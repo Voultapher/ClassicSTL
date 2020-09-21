@@ -27,7 +27,16 @@ Use raw iterator operations like `++first`, `--last`, and `first != last`
 in the implementation of your algorithm.
 
 
-### Bonus: Constrain your template
+### Easy Bonus: Mandate bidirectional iterators
+
+Add a `static_assert` at the top of your function template's body,
+which asserts that the type of `first` and `last` is a bidirectional
+iterator type. You should use `iterator_traits` here, and then pass the
+resulting iterator-category tag type to `std::is_base_of` (from
+C++11's `<type_traits>` header).
+
+
+### Hard Bonus: Constrain your template
 
 Cut and paste your implementation into `lab1-bonus.m.cpp`,
 and try `make lab1-bonus`. (Modify the Makefile to pass `-std=c++20`,

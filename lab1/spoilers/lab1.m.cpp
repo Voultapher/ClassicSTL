@@ -9,6 +9,11 @@
 template<class It>
 bool is_palindrome(It first, It last)
 {
+    static_assert(std::is_base_of<
+        std::bidirectional_iterator_tag,
+        typename std::iterator_traits<It>::iterator_category
+    >::value, "Iterator must be bidirectional or better");
+
     while (first != last) {
         --last;
         if (first == last) break;
@@ -41,4 +46,13 @@ int main()
 
     lst.assign(s.begin(), s.end());
     assert(is_palindrome(lst.begin(), lst.end()));
+
+    std::list<int> ints = {1,2,1};
+    assert(is_palindrome(ints.begin(), ints.end()));
+    ints.assign({1,2,2,1});
+    assert(is_palindrome(ints.begin(), ints.end()));
+    ints.assign({1,2,3,1});
+    assert(!is_palindrome(ints.begin(), ints.end()));
+    ints.clear();
+    assert(is_palindrome(ints.begin(), ints.end()));
 }

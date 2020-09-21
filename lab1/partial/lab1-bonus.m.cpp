@@ -29,6 +29,15 @@ int main()
 
     lst.assign(s.begin(), s.end());
     assert(is_palindrome(lst.begin(), lst.end()));
+
+    std::list<int> ints = {1,2,1};
+    assert(is_palindrome(ints.begin(), ints.end()));
+    ints.assign({1,2,2,1});
+    assert(is_palindrome(ints.begin(), ints.end()));
+    ints.assign({1,2,3,1});
+    assert(!is_palindrome(ints.begin(), ints.end()));
+    ints.clear();
+    assert(is_palindrome(ints.begin(), ints.end()));
 }
 
 #if CONCEPTS2
